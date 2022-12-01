@@ -1,0 +1,68 @@
+  
+  .links {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    align-content: center;
+    gap: 10px;
+  }
+  /**
+ a {
+    color: currentColor;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  a:hover {
+    color: #fff;
+    background-color: #333;
+  }
+  **/
+
+ 
+  
+  .dialog {
+    padding: 20px;
+    border: 0;
+    background: transparent;
+  }
+ 
+  .dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+  }
+  
+  .dialog__wrapper {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 4px;
+    height: 30vh;
+    margin-top: 30vh;
+    width: 100%;
+    margin-left: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dialog__close {
+    border: 0;
+    padding: 0;
+    width: 24px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    line-height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    --webkit-appearance: none;
+    appearance: none;
+  }
