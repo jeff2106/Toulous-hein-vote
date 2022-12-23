@@ -6,24 +6,24 @@ const goToGoogle = document.getElementById("goToGoogle");
 
 //Object that stores values of minimum and maximum angle for a value
 const rotationValues = [
-  { minDegree: 0, maxDegree: 30, value: "un HotDog" },
-  { minDegree: 31, maxDegree: 90, value: "une Pizza" },
-  { minDegree: 91, maxDegree: 150, value: "un Seau de PopCorn" },
-  { minDegree: 151, maxDegree: 210, value: "un Chawarma" },
-  { minDegree: 211, maxDegree: 270, value: "un Burger" },
-  { minDegree: 271, maxDegree: 330, value: "Kfc" },
-  { minDegree: 331, maxDegree: 360, value: "un HotDog" },
+  { minDegree: 0, maxDegree: 30, value: "un menu" },
+  { minDegree: 31, maxDegree: 90, value: "perdu 😞" },
+  { minDegree: 91, maxDegree: 150, value: "un burger" },
+  { minDegree: 151, maxDegree: 210, value: "10% de réduction" },
+  { minDegree: 211, maxDegree: 270, value: "perdu 😞" },
+  { minDegree: 271, maxDegree: 330, value: "une boisson chaude" },
+  { minDegree: 331, maxDegree: 360, value: "perdu 😞" },
 ];
 //Size of each piece
 const data = [16, 16, 16, 16, 16, 16];
 //background color for each piece
 var pieColors = [
   "#984F4F",
-  "#984F4FAA",
+  "black",
   "#984F4F",
-  "#984F4FAA",
+  "black",
   "#984F4F",
-  "#984F4FAA",
+  "black",
 ];
 //Create chart
 let myChart = new Chart(wheel, {
@@ -34,7 +34,7 @@ let myChart = new Chart(wheel, {
   type: "pie",
   data: {
     //Labels(values which are to be displayed on chart)
-    labels: ["🍕", "🌭", "🍟", "🍔", "🫔", "🍿"],
+    labels: ["🎁", " 🎁", "🎁", "🎁", "🎁", "🎁"],
     //labels: ["Pizza \n Hut", "Pizza \n Hut", "Pizza \n Hut", "Pizza \n Hut", "Pizza \n Hut", "Pizza \n Hut"],
     //Settings for dataset/pie
     datasets: [
@@ -67,12 +67,17 @@ const valueGenerator = (angleValue) => {
   localStorage.removeItem("isActive");
   for (let i of rotationValues) {
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-      finalValue.innerHTML = `<p>Vous êtes tomber sur ${i.value} 🥳</p>`;
-      finalValue.innerHTML += `<center>
-      <div class="bg-red-500 w-3/6 h-9 mt-2 rounded-full flex items-center justify-center">
-        <span class="text-sm text-white">Reclamer son gain</span>
-      </div>
-    </center>`;
+      if(i.value === "perdu 😞"){
+        finalValue.innerHTML = `<p>Vous êtes tomber sur une boite vide 😞 desoler</p>`;
+      }else{
+        finalValue.innerHTML = `<p>Vôtre boite contient ( ${i.value} ) 🥳</p>`;
+        finalValue.innerHTML += `<center>
+        <div class="bg-red-500 w-3/6 h-9 mt-2 rounded-full flex items-center justify-center">
+          <span class="text-sm text-white">Reclamer son gain</span>
+        </div>
+      </center>`;
+      }
+      
       spinBtn.disabled = false;
       break;
     }
@@ -86,7 +91,6 @@ if (isActive) {
   spinBtn.style.display = "block";
   getvote.style.display = "none";
 }
-
 goToGoogle.addEventListener("click", () => {
   spinBtn.style.display = "block";
   getvote.style.display = "none";
@@ -113,7 +117,7 @@ spinBtn.addEventListener("click", () => {
       myChart.options.rotation = 0;
     } else if (count > 15 && myChart.options.rotation == randomDegree) {
       valueGenerator(randomDegree);
-
+      console.log()
       clearInterval(rotationInterval);
       count = 0;
       resultValue = 101;
